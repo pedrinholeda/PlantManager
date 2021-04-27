@@ -1,18 +1,17 @@
-import React, {useState} from "react"
-import { SafeAreaView, Text, Image, TouchableOpacity, StyleSheet } from "react-native"
+import React from "react"
+import {
+    SafeAreaView,
+    Text,
+    Image,
+    TouchableOpacity,
+    StyleSheet,
+    Dimensions
+} from "react-native"
 
 import wateringImg from '../assets/watering.png'
 import colors from "../styles/colors"
 
-import {Button} from '../components/Button'
-
 export function Welcome() {
-    const [visible, setVisible] = useState(false);
-
-    function handleVisibility(){
-        setVisible(true)
-
-    }
 
     return (
         <SafeAreaView style={styles.container}>
@@ -21,15 +20,21 @@ export function Welcome() {
                 suas plantas{'\n'}
                 de forma facil
             </Text>
-            {
-                visible &&
-            <Image source={wateringImg} style={styles.image} />
-}
+
+            <Image source={wateringImg} style={styles.image} resizeMode="contain" />
+
             <Text style={styles.subtitle}>
                 Não esqueça mais de regar suas plantas.
                 Nós cuidamos de lembrar você sempre que precisar.
             </Text>
-            <Button title=">"/>
+            <TouchableOpacity
+                style={styles.button}
+                activeOpacity={0.7}
+            >
+            <Text style={styles.buttonText}>
+               >
+            </Text>
+        </TouchableOpacity>
         </SafeAreaView>
     )
 }
@@ -38,7 +43,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-around'
     },
     title: {
         fontSize: 32,
@@ -63,9 +68,9 @@ const styles = StyleSheet.create({
         height: 56,
         width: 56
     },
-    image: {
-        width: 292,
-        height: 284
+    image: { 
+        //calculando tamanho da imagem de acordo com a tela  
+        height: Dimensions.get('window').width * 0.7
     },
     buttonText: {
         color: colors.white,
